@@ -1,26 +1,49 @@
-quilt_write_form <- function(input_data, ro_separator = ";",
+#' Create text labelling form for importing to Qualtrics
+#'
+#' @param input_data data.frame: input data generated with `quilt_form_data()`
+#' @param page_break_every integer: number of text examples before page break
+#' @param question_type character vector: one of c("dropdown", "select", "multiselect", "singleanswer", "multianswer", )
+#' @param filename name of survey .txt form generated
+#'
+#' @return a .txt survey file
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' library(stringi)
+#'
+#' textdat <- data.frame(text = stri_rand_lipsum(100, start_lipsum = TRUE))
+#'
+#' qdat <- quilt_form_data(question = "Label this text: ", text = textdat$text,
+#' response_type = "scale", nlow = 1, nhigh = 10, addID = T)
+#'
+#' quilt_write_form(input_data = qdat,page_break_every = 1,
+#' question_type = "multianswer",filename = "test/testing.txt")
+#' }
+quilt_write_form <- function(input_data,
                              page_break_every = 0,
                              question_type,
                              filename = "surveyOut.txt") {
 
   if(question_type=="dropdown"){
-    qtype = "[[Question:MC:Dropdown]]"
+    question_type = "[[Question:MC:Dropdown]]"
   }
 
   if(question_type=="select"){
-    qtype = "[[Question:MC:Select]]"
+    question_type = "[[Question:MC:Select]]"
   }
 
   if(question_type=="multiselect"){
-    qtype = "[[Question:MC:MultiSelect]]"
+    question_type = "[[Question:MC:MultiSelect]]"
   }
 
   if(question_type=="singleanswer"){
-    qtype = "[[Question:MC:SingleAnswer:Horizontal]]"
+    question_type = "[[Question:MC:SingleAnswer:Horizontal]]"
   }
 
   if(question_type=="multianswer"){
-    qtype = "[[Question:MC:MultipleAnswer:Horizontal]]"
+    question_type = "[[Question:MC:MultipleAnswer:Horizontal]]"
   }
 
   rowID <- NULL
@@ -39,41 +62,42 @@ quilt_write_form <- function(input_data, ro_separator = ";",
 
   if(page_break_every != 0) {
 
-    rowCount <- nrow(input_data)
+    nformrow <- nrow(input_data)
 
-    input_data$rowID <- 1:rowCount
+    input_data$rowID <- 1:nformrow
 
-    breakNumbers <- seq(from = page_break_every, to = rowCount,
-                        by = page_break_every) + .1
+    pbreaknums <- seq(from = page_break_every, to = nformrow,
+                      by = page_break_every) + .1
 
-    input_data[(rowCount + 1):(rowCount + length(breakNumbers)), ] <- ""
+    input_data[(nformrow + 1):(nformrow + length(pbreaknums)), ] <- ""
 
-    input_data$question[(rowCount + 1):(rowCount + length(breakNumbers))] <- "[[PageBreak]]\n"
+    input_data$question[(nformrow + 1):(nformrow + length(pbreaknums))] <- "[[PageBreak]]\n"
 
-    input_data$rowID[(rowCount + 1):(rowCount + length(breakNumbers))] <- breakNumbers
+    input_data$rowID[(nformrow + 1):(nformrow + length(pbreaknums))] <- pbreaknums
 
     input_data <- input_data[order(input_data$rowID), ]
 
   } else input_data$rowID = 1:nrow(input_data)
 
-  meltedSurvey <- reshape2::melt(input_data, id.vars = "rowID", factorsAsStrings = TRUE)
+  quiltedform <- reshape2::melt(input_data, id.vars = "rowID", factorsAsStrings = TRUE)
 
-  meltedSurvey <- dplyr::arrange(meltedSurvey, rowID, as.character(variable))
+  quiltedform <- quiltedform[order(quiltedform$rowID,
+                                   as.character(quiltedform$variable)), , drop = FALSE]
 
-  meltedSurvey$value[which(meltedSurvey$variable == "id" & meltedSurvey$value != "")] <-
-    paste(qtype, "\n",
-          meltedSurvey$value[which(meltedSurvey$variable == "id" & meltedSurvey$value != "")],
+  quiltedform$value[which(quiltedform$variable == "id" & quiltedform$value != "")] <-
+    paste(question_type, "\n",
+          quiltedform$value[which(quiltedform$variable == "id" & quiltedform$value != "")],
           sep = "")
 
-  meltedSurvey$value[which(meltedSurvey$variable == "responseOptions" & meltedSurvey$value != "")] <-
+  quiltedform$value[which(quiltedform$variable == "response_type" & quiltedform$value != "")] <-
     paste("[[Choices]]", "\n",
-          meltedSurvey$value[which(meltedSurvey$variable == "responseOptions" & meltedSurvey$value != "")],
+          quiltedform$value[which(quiltedform$variable == "response_type" & quiltedform$value != "")],
           "\n",
           sep = "")
 
-  meltedSurvey <- unlist(strsplit(meltedSurvey$value, ro_separator))
+  quiltedform <- unlist(strsplit(quiltedform$value, ";"))
 
-  meltedSurvey[1] <- paste("[[AdvancedFormat]]\n", meltedSurvey[1], sep = "\n")
+  quiltedform[1] <- paste("[[AdvancedFormat]]\n", quiltedform[1], sep = "\n")
 
-  writeLines(meltedSurvey, filename)
+  writeLines(quiltedform, filename)
 }
