@@ -34,9 +34,9 @@ library(stringi)
 textdat <- data.frame(text = stri_rand_lipsum(100, start_lipsum = TRUE))
 
 qdat <- quilt_form_data(question = "Label this text: ", text = textdat$text,
-response_type = "scale", nlow = 1, nhigh = 10, addID = T)
+                        response_type = "scale", nlow = 1, nhigh = 10, addID = T)
 
 quilt_write_form(input_data = qdat,page_break_every = 1,
-question_type = "multianswer",filename = "test/testing.txt")
+                 question_type = "multianswer",filename = "test/testing.txt")
 }
 }

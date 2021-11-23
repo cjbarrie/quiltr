@@ -15,9 +15,9 @@ quilt_form_data(question, text, response_type, addID, nlow, nhigh)
 
 \item{addID}{add an ID variable to the text data}
 
-\item{nlow}{integer: lower end of numeric scale}
+\item{nlow}{integer: low end of numeric scale}
 
-\item{nhigh}{integer: higher end of numeric scale}
+\item{nhigh}{integer: high end of numeric scale}
 }
 \value{
 a data.frame
@@ -33,8 +33,8 @@ library(stringi)
 textdat <- data.frame(text = stri_rand_lipsum(100, start_lipsum = TRUE))
 
 qdat <- quilt_form_data(question = "Label this text: ",
-text = textdat$text, response_type = "scale",
-nlow = 1, nhigh = 10, addID = T)
+                        text = textdat$text, response_type = "scale",
+                        nlow = 1, nhigh = 10, addID = T)
 
 }
 }

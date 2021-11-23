@@ -4,8 +4,8 @@
 #' @param text character vector: text inputs for labelling
 #' @param response_type character vector: one of c("yesno", "scale")
 #' @param addID add an ID variable to the text data
-#' @param nlow integer: lower end of numeric scale
-#' @param nhigh integer: higher end of numeric scale
+#' @param nlow integer: low end of numeric scale
+#' @param nhigh integer: high end of numeric scale
 #'
 #' @return a data.frame
 #' @export
@@ -18,8 +18,8 @@
 #' textdat <- data.frame(text = stri_rand_lipsum(100, start_lipsum = TRUE))
 #'
 #' qdat <- quilt_form_data(question = "Label this text: ",
-#' text = textdat$text, response_type = "scale",
-#' nlow = 1, nhigh = 10, addID = T)
+#'                         text = textdat$text, response_type = "scale",
+#'                         nlow = 1, nhigh = 10, addID = T)
 #'
 #' }
 quilt_form_data <- function(question, text, response_type, addID,
