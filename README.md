@@ -18,7 +18,7 @@ library(quiltr)
 
 The <tt>quiltr</tt> package has been adapted from the <tt>qualtricsR</tt> [here](https://github.com/saberry/qualtricsR). This package was designed for generating bespoke surveys in a format appropriate for importing into Qualtrics. 
 
-This package is designed solely for generating forms for data labelling, in particular text labelling. 
+The <tt>quiltr</tt> package is designed solely for generating forms for data labelling, in particular text labelling. 
 
 There are two main workhorse functions, which are `quilt_form_data()` and `quilt_write_form`. The first of these takes a dataset of text for labelling and structures it appropriately for writing the Qualtrics data labelling form. The second takes the data.frame produced by `quilt_form_data()` and generates a .txt file that is importable into Qualtrics.
 
