@@ -1,6 +1,8 @@
 # quiltr
 Qualtrics for labelling text using R
 
+**UNDER DEVELOPMENT**
+
 ## Installation
 
 You can install the package with:
