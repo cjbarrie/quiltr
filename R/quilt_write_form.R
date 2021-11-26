@@ -70,25 +70,40 @@ quilt_write_form <- function(input_data,
 
   } else input_data$rowID = 1:nrow(input_data)
 
-  quiltedform <- reshape2::melt(input_data, id.vars = "rowID", factorsAsStrings = TRUE)
+  quiltedform <- input_data
 
-  quiltedform <- quiltedform[order(quiltedform$rowID,
-                                   as.character(quiltedform$variable)), , drop = FALSE]
+  quiltedform$response_type <- gsub(";", "\n", quiltedform$response_type)
 
-  quiltedform$value[which(quiltedform$variable == "id" & quiltedform$value != "")] <-
-    paste(question_type, "\n",
-          quiltedform$value[which(quiltedform$variable == "id" & quiltedform$value != "")],
-          sep = "")
+  quiltedform$id[which(quiltedform$id != "")] <-
+    paste0(question_type, "\n", quiltedform$id[which(quiltedform$id != "")], "\n", sep = "")
 
-  quiltedform$value[which(quiltedform$variable == "response_type" & quiltedform$value != "")] <-
-    paste("[[Choices]]", "\n",
-          quiltedform$value[which(quiltedform$variable == "response_type" & quiltedform$value != "")],
-          "\n",
-          sep = "")
+  quiltedform$response_type[which(quiltedform$response_type != "")] <-
+    paste0("\n", "[[Choices]]", "\n", quiltedform$response_type[which(quiltedform$response_type != "")], "\n", sep = "")
 
-  quiltedform <- unlist(strsplit(quiltedform$value, ";"))
+  full <- paste0(quiltedform$id, quiltedform$question, quiltedform$response_type)
 
-  quiltedform[1] <- paste("[[AdvancedFormat]]\n", quiltedform[1], sep = "\n")
+  #  code from qualtricsR that imports reshape2
+  # quiltedform <- reshape2::melt(input_data, id.vars = "rowID", factorsAsStrings = TRUE)
+  #
+  # quiltedform <- quiltedform[order(quiltedform$rowID,
+  #                                  as.character(quiltedform$variable)), , drop = FALSE]
+  #
+  # quiltedform$value[which(quiltedform$variable == "id" & quiltedform$value != "")] <-
+  #   paste(question_type, "\n",
+  #         quiltedform$value[which(quiltedform$variable == "id" & quiltedform$value != "")],
+  #         sep = "")
+  #
+  # quiltedform$value[which(quiltedform$variable == "response_type" & quiltedform$value != "")] <-
+  #   paste("[[Choices]]", "\n",
+  #         quiltedform$value[which(quiltedform$variable == "response_type" & quiltedform$value != "")],
+  #         "\n",
+  #         sep = "")
 
-  writeLines(quiltedform, filename)
+  # quiltedform <- unlist(strsplit(quiltedform$value, ";"))
+  #
+  # quiltedform[1] <- paste("[[AdvancedFormat]]\n", quiltedform[1], sep = "\n")
+
+  full[1] <- paste("[[AdvancedFormat]]\n", full[1], sep = "\n")
+
+  writeLines(full, filename)
 }
