@@ -1,9 +1,9 @@
 #' Create text labelling form for importing to Qualtrics
 #'
 #' @param input_data data.frame: input data generated with `quilt_form_data()`
-#' @param page_break_every integer: number of text examples before page break
-#' @param question_type character vector: one of c("dropdown", "select", "multiselect", "singleanswer", "multianswer", )
-#' @param filename name of survey .txt form generated
+#' @param page_break_every integer: number of text examples before page break; default is 0
+#' @param question_type character vector: one of c("dropdown", "select", "multiselect", "singleanswer", "multianswer", "rankorder" )
+#' @param filename name of survey .txt form generated, e.g. "quilted_form.txt."
 #'
 #' @return a .txt survey file
 #' @export
@@ -24,7 +24,7 @@
 quilt_write_form <- function(input_data,
                              page_break_every = 0,
                              question_type,
-                             filename = "surveyOut.txt") {
+                             filename) {
 
   if(question_type=="dropdown"){
     question_type = "[[Question:MC:Dropdown]]"
@@ -46,6 +46,10 @@ quilt_write_form <- function(input_data,
     question_type = "[[Question:MC:MultipleAnswer:Horizontal]]"
   }
 
+  if(question_type=="rankorder"){
+    question_type = "[[Question:RankOrder]]"
+  }
+
   rowID <- NULL
 
   variable <- NULL
@@ -62,20 +66,7 @@ quilt_write_form <- function(input_data,
 
   if(page_break_every != 0) {
 
-    nformrow <- nrow(input_data)
-
-    input_data$rowID <- 1:nformrow
-
-    pbreaknums <- seq(from = page_break_every, to = nformrow,
-                      by = page_break_every) + .1
-
-    input_data[(nformrow + 1):(nformrow + length(pbreaknums)), ] <- ""
-
-    input_data$question[(nformrow + 1):(nformrow + length(pbreaknums))] <- "[[PageBreak]]\n"
-
-    input_data$rowID[(nformrow + 1):(nformrow + length(pbreaknums))] <- pbreaknums
-
-    input_data <- input_data[order(input_data$rowID), ]
+    input_data <- pbreak(input_data, page_break_every)
 
   } else input_data$rowID = 1:nrow(input_data)
 

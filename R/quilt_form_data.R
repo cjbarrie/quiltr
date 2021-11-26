@@ -2,7 +2,8 @@
 #'
 #' @param question character string: question prompt of text for labelling, e.g.: "Label this text: "
 #' @param text character vector: text inputs for labelling
-#' @param response_type character vector: one of c("yesno", "scale")
+#' @param response_type character vector: one of c("yesno", "options", "scale")
+#' @param options character vector of response options: e.g., c("big", "small", "biggie smalls")
 #' @param addID add an ID variable to the text data
 #' @param nlow integer: low end of numeric scale
 #' @param nhigh integer: high end of numeric scale
@@ -18,19 +19,32 @@
 #' textdat <- data.frame(text = stri_rand_lipsum(100, start_lipsum = TRUE))
 #'
 #' qdat <- quilt_form_data(question = "Label this text: ",
+#'                         text = textdat$text, response_type = "yesno",
+#'                         addID = T)
+#'
+#' qdat <- quilt_form_data(question = "Label this text: ",
+#'                         text = textdat$text, response_type = "options",
+#'                         options = c("Not at all", "Somewhat", "Very much"),
+#'                         addID = T)
+#'
+#' qdat <- quilt_form_data(question = "Label this text: ",
 #'                         text = textdat$text, response_type = "scale",
 #'                         nlow = 1, nhigh = 10, addID = T)
-#'
 #' }
-quilt_form_data <- function(question, text, response_type, addID,
+quilt_form_data <- function(question, text, response_type, options, addID,
                             nlow, nhigh) {
 
   df = data.frame(question = paste(rep(question, "\n", length(text)), text))
 
-  df$response_type = paste(rep("Yes;No", length(text)))
-
   if(response_type=="yesno"){
     df$response_type = paste(rep("Yes;No", length(text)))
+  }
+
+  if(response_type=="options"){
+    if(is.null(options)) {
+      stop("Options response requires options input")
+    }
+    df$response_type = paste(rep(options), collapse = ";")
   }
 
   if(response_type=="scale"){
@@ -41,7 +55,7 @@ quilt_form_data <- function(question, text, response_type, addID,
   }
 
   if(isTRUE(addID)){
-    df$id = paste0("QID", length(text))
+    df$id = paste0("QID", 1:length(text))
   }
 
   return(df)

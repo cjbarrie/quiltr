@@ -4,21 +4,16 @@
 \alias{quilt_write_form}
 \title{Create text labelling form for importing to Qualtrics}
 \usage{
-quilt_write_form(
-  input_data,
-  page_break_every = 0,
-  question_type,
-  filename = "surveyOut.txt"
-)
+quilt_write_form(input_data, page_break_every = 0, question_type, filename)
 }
 \arguments{
 \item{input_data}{data.frame: input data generated with \code{quilt_form_data()}}
 
-\item{page_break_every}{integer: number of text examples before page break}
+\item{page_break_every}{integer: number of text examples before page break; default is 0}
 
-\item{question_type}{character vector: one of c("dropdown", "select", "multiselect", "singleanswer", "multianswer", )}
+\item{question_type}{character vector: one of c("dropdown", "select", "multiselect", "singleanswer", "multianswer", "rankorder" )}
 
-\item{filename}{name of survey .txt form generated}
+\item{filename}{name of survey .txt form generated, e.g. "quilted_form.txt."}
 }
 \value{
 a .txt survey file

@@ -7,3 +7,4 @@ utils.R
 .Rdata
 .httr-oauth
 .DS_Store
+.Rprofile

@@ -4,14 +4,16 @@
 \alias{quilt_form_data}
 \title{Format text data to structure needed for \code{quilt_write_form()}}
 \usage{
-quilt_form_data(question, text, response_type, addID, nlow, nhigh)
+quilt_form_data(question, text, response_type, options, addID, nlow, nhigh)
 }
 \arguments{
 \item{question}{character string: question prompt of text for labelling, e.g.: "Label this text: "}
 
 \item{text}{character vector: text inputs for labelling}
 
-\item{response_type}{character vector: one of c("yesno", "scale")}
+\item{response_type}{character vector: one of c("yesno", "options", "scale")}
+
+\item{options}{character vector of response options: e.g., c("big", "small", "biggie smalls")}
 
 \item{addID}{add an ID variable to the text data}
 
@@ -33,8 +35,16 @@ library(stringi)
 textdat <- data.frame(text = stri_rand_lipsum(100, start_lipsum = TRUE))
 
 qdat <- quilt_form_data(question = "Label this text: ",
+                        text = textdat$text, response_type = "yesno",
+                        addID = T)
+
+qdat <- quilt_form_data(question = "Label this text: ",
+                        text = textdat$text, response_type = "options",
+                        options = c("Not at all", "Somewhat", "Very much"),
+                        addID = T)
+
+qdat <- quilt_form_data(question = "Label this text: ",
                         text = textdat$text, response_type = "scale",
                         nlow = 1, nhigh = 10, addID = T)
-
 }
 }

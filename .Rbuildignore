@@ -1,3 +1,5 @@
 ^quiltr\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^test$
+^data-raw$
