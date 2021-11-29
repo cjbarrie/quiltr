@@ -9,13 +9,14 @@ quilt_form_data(
   text,
   response_type,
   options,
-  addID = T,
+  addID = TRUE,
   nlow,
-  nhigh
+  nhigh,
+  remove_NA = FALSE
 )
 }
 \arguments{
-\item{prompt}{character string: prompt of text for labelling, e.g.: "Label this text: "}
+\item{prompt}{character string: prompt of text for labelling, e.g.: "Label this text: "; defaults to \code{NULL}}
 
 \item{text}{character vector: text inputs for labelling}
 
@@ -28,6 +29,8 @@ quilt_form_data(
 \item{nlow}{integer: low end of numeric scale}
 
 \item{nhigh}{integer: high end of numeric scale}
+
+\item{remove_NA}{if \code{TRUE}: removes empty rows of text}
 }
 \value{
 a data.frame
