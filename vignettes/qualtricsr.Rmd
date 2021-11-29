@@ -65,3 +65,29 @@ Qualtrics will then prompt us to select the relevant .txt file, which we previou
 <center>
 ![](files/quiltr2.png){width=80%}
 </center>
+
+## Non-Latin language support
+
+The package works equally well with Latin languages as it does with non-Latin languages, including languages written from right-left such as Arabic. We can see this below where we use a mixture of Arabic text and English prompts.
+
+```r
+
+qdat <- quilt_form_data(prompt = "Label this text: ",
+                     text = arabiya_text$text, response_type = "scale",
+                     nlow = 1, nhigh = 10, addID = T)
+```
+
+```r
+
+quilt_form(input_data = qdat,
+            page_break_every = 1, question_type = "multianswer",
+            filename = "quilted_survey.txt")
+
+```
+
+After importing into Qualtrics, we see that the prompt and Arabic text is correctly displayed:
+
+
+<center>
+![](man/figures/quiltr3.png){width=80%}
+</center>
