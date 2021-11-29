@@ -3,3 +3,4 @@
 ^LICENSE\.md$
 ^test$
 ^data-raw$
+^codecov\.yml$
