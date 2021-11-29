@@ -1,24 +1,13 @@
-# quiltr <img src="man/figures/quiltrhex.png" width="160px" align="right" />
+---
+title: "qualtricsr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{qualtricsr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
-Qualtrics imports for labelling text using R
-
-## Installation
-
-You can install the package with:
-
-``` r
-devtools::install_github("cjbarrie/quiltr")
-```
-
-To use the package, it first needs to be loaded with:
-
-```r
-
-library(quiltr)
-
-```
-
-The <tt>quiltr</tt> package has been adapted from the <tt>qualtricsR</tt> [here](https://github.com/saberry/qualtricsR). This package was designed for generating bespoke surveys in a format appropriate for importing into Qualtrics. 
+## Overview
 
 The <tt>quiltr</tt> package is designed for generating Qualtrics importable forms for data labelling, in particular text labelling. 
 
@@ -68,11 +57,11 @@ quilt_form(input_data = qdat,
 After we've generated the file in the appropriate format, we can import to Qualtrics. First we go to the survey in question, here named "import_test." We then click on tools and select the "Import/Export" > "Import survey." 
 
 <center>
-![](man/figures/quiltr1.png){width=80%}
+![](files/quiltr1.png){width=80%}
 </center>
 
 Qualtrics will then prompt us to select the relevant .txt file, which we previously generated with `quilt_form`. We select here "quilted_survey.txt" and press "Import." We have now successfully imported our survey into Qualtrics!
 
 <center>
-![](man/figures/quiltr2.png){width=80%}
+![](files/quiltr2.png){width=80%}
 </center>

@@ -8,3 +8,4 @@ utils.R
 .httr-oauth
 .DS_Store
 .Rprofile
+inst/doc
