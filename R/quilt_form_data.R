@@ -1,12 +1,13 @@
 #' Format text data to structure needed for `quilt_write_form()`
 #'
-#' @param prompt character string: prompt of text for labelling, e.g.: "Label this text: "
+#' @param prompt character string: prompt of text for labelling, e.g.: "Label this text: "; defaults to `NULL`
 #' @param text character vector: text inputs for labelling
 #' @param response_type character vector: one of c("yesno", "options", "scale")
 #' @param options character vector of response options: e.g., c("big", "small", "biggie smalls")
 #' @param addID add an ID variable to the text data
 #' @param nlow integer: low end of numeric scale
 #' @param nhigh integer: high end of numeric scale
+#' @param remove_NA if `TRUE`: removes empty rows of text
 #'
 #' @return a data.frame
 #' @export
@@ -29,8 +30,12 @@
 #'                         text = lipsum_text$text, response_type = "scale",
 #'                         nlow = 1, nhigh = 10, addID = T)
 #' }
-quilt_form_data <- function(prompt = NULL, text, response_type, options, addID,
-                            nlow, nhigh) {
+quilt_form_data <- function(prompt = NULL, text, response_type, options, addID = TRUE,
+                            nlow, nhigh, remove_NA = FALSE) {
+
+  if(isTRUE(remove_NA)){
+    text <- text[!is.na(text)]
+  }
 
   if(is.null(prompt)){
     prompt = ""

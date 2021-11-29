@@ -9,7 +9,7 @@ quilt_form_data(
   text,
   response_type,
   options,
-  addID,
+  addID = T,
   nlow,
   nhigh
 )
