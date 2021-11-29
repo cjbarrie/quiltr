@@ -70,11 +70,9 @@ quilt_form(input_data = qdat,
 After we've generated the file in the appropriate format, we can import to Qualtrics. First we go to the survey in question, here named "import_test." We then click on tools and select the "Import/Export" > "Import survey." 
 
 
-![](man/figures/quiltr1.png)
+![](man/figures/quiltr1.gif)
 
 Qualtrics will then prompt us to select the relevant .txt file, which we previously generated with `quilt_form`. We select here "quilted_survey.txt" and press "Import." We have now successfully imported our survey into Qualtrics!
-
-![](man/figures/quiltr2.png)
 
 ## Non-Latin language support
 
