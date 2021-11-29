@@ -1,4 +1,4 @@
-# quiltr <img src="vignettes/files/quiltrhex.png" width="160px" align="right" />
+# quiltr <img src="man/figures/quiltrhex.png" width="160px" align="right" />
 
 Qualtrics imports for labelling text using R
 
@@ -67,15 +67,12 @@ quilt_form(input_data = qdat,
 
 After we've generated the file in the appropriate format, we can import to Qualtrics. First we go to the survey in question, here named "import_test." We then click on tools and select the "Import/Export" > "Import survey." 
 
-<center>
-![](vignettes/files/quiltr1.png){width=80%}
-</center>
+
+![](man/figures/quiltr1.png)
 
 Qualtrics will then prompt us to select the relevant .txt file, which we previously generated with `quilt_form`. We select here "quilted_survey.txt" and press "Import." We have now successfully imported our survey into Qualtrics!
 
-<center>
-![](vignettes/files/quiltr2.png){width=80%}
-</center>
+![](man/figures/quiltr2.png)
 
 ## Non-Latin language support
 
@@ -99,6 +96,5 @@ quilt_form(input_data = qdat,
 After importing into Qualtrics, we see that the prompt and Arabic text is correctly displayed:
 
 
-<center>
-![](vignettes/files/quiltr3.png){width=80%}
-</center>
+
+![](man/figures/quiltr3.png)
