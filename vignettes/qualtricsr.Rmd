@@ -89,5 +89,5 @@ After importing into Qualtrics, we see that the prompt and Arabic text is correc
 
 
 <center>
-![](man/figures/quiltr3.png){width=80%}
+![](files/quiltr3.png){width=80%}
 </center>
