@@ -4,10 +4,18 @@
 \alias{quilt_form_data}
 \title{Format text data to structure needed for \code{quilt_write_form()}}
 \usage{
-quilt_form_data(question, text, response_type, options, addID, nlow, nhigh)
+quilt_form_data(
+  prompt = NULL,
+  text,
+  response_type,
+  options,
+  addID,
+  nlow,
+  nhigh
+)
 }
 \arguments{
-\item{question}{character string: question prompt of text for labelling, e.g.: "Label this text: "}
+\item{prompt}{character string: prompt of text for labelling, e.g.: "Label this text: "}
 
 \item{text}{character vector: text inputs for labelling}
 
@@ -30,21 +38,19 @@ Format text data to structure needed for \code{quilt_write_form()}
 \examples{
 \dontrun{
 
-library(stringi)
+data(lipsum_text)
 
-textdat <- data.frame(text = stri_rand_lipsum(100, start_lipsum = TRUE))
-
-qdat <- quilt_form_data(question = "Label this text: ",
-                        text = textdat$text, response_type = "yesno",
+qdat <- quilt_form_data(prompt = "Label this text: ",
+                        text = lipsum_text$text, response_type = "yesno",
                         addID = T)
 
-qdat <- quilt_form_data(question = "Label this text: ",
-                        text = textdat$text, response_type = "options",
+qdat <- quilt_form_data(prompt = "Label this text: ",
+                        text = lipsum_text$text, response_type = "options",
                         options = c("Not at all", "Somewhat", "Very much"),
                         addID = T)
 
-qdat <- quilt_form_data(question = "Label this text: ",
-                        text = textdat$text, response_type = "scale",
+qdat <- quilt_form_data(prompt = "Label this text: ",
+                        text = lipsum_text$text, response_type = "scale",
                         nlow = 1, nhigh = 10, addID = T)
 }
 }

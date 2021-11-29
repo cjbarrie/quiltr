@@ -1,5 +1,6 @@
-# quiltr
-Qualtrics for labelling text using R
+# quiltr <img src="man/figures/quiltrhex.png" width="160px" align="right" />
+
+Qualtrics imports for labelling text using R
 
 **UNDER DEVELOPMENT**
 
