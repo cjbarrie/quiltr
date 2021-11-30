@@ -98,20 +98,18 @@ After importing into Qualtrics, we see that the prompt and Arabic text is correc
 
 There are several options for question types for text labelling tasks. The first group allow the user to select from a set of options (e.g., "Yes/No/Maybe"), and allow respondents to select either one or multiple answers depending on whether we specify e.g., "select" or "multiselect" as our `question_type` argument. 
 
-The table and gif below detail the different question types, and how they are rendered in Qualtrics.
+The table below details the different question types, and how they are rendered in Qualtrics.
 
-| `question_type` | Description |
-|----------|:-------------:|
-| "dropdown" | Dropdown select box
-| "select" | Vertical list select
-| "multiselect" | Vertical list multiselect
-| "singleanswer" | Horizontal list select
-| "multianswer" | Horizontal list multiselect
-| "rankorder" | Vertical list of draggable ranked options
-| "singleline" | Single line text entry
-| "essay" | Multiline text entry
-
-![](man/figures/quiltr2.gif)
+| `question_type` | Description | Example |
+|----------|:------------- | ----
+| "dropdown" | Dropdown select box | ![](man/figures/dropdown.png) 
+| "select" | Vertical list select | ![](man/figures/select.png)
+| "multiselect" | Vertical list multiselect | ![](man/figures/multiselect.png)
+| "singleanswer" | Horizontal list select | ![](man/figures/singleanswer.png)
+| "multianswer" | Horizontal list multiselect | ![](man/figures/multianswer.png)
+| "rankorder" | Vertical list of draggable ranked options | ![](man/figures/rankorder.png)
+| "singleline" | Single line text entry | ![](man/figures/singleline.png)
+| "essay" | Multiline text entry | ![](man/figures/essay.png)
 
 ## Acknowledgments
 

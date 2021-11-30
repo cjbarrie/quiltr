@@ -70,18 +70,18 @@ Qualtrics will then prompt us to select the relevant .txt file, which we previou
 
 There are several options for question types for text labelling tasks. The first group allow the user to select from a set of options (e.g., "Yes/No/Maybe"), and allow respondents to select either one or multiple answers depending on whether we specify e.g., "select" or "multiselect" as our `question_type` argument. 
 
-The table below details the different question types:
+The table below details the different question types, and how they are rendered in Qualtrics.
 
-| `question_type` | Description |
-|----------|:-------------:|
-| "dropdown" | Dropdown select box
-| "select" | Vertical list select
-| "multiselect" | Vertical list multiselect
-| "singleanswer" | Horizontal list select
-| "multianswer" | Horizontal list multiselect
-| "rankorder" | Vertical list of draggable ranked options
-| "singleline" | Single line text entry
-| "essay" | Multiline text entry
+| `question_type` | Description | Example |
+|----------|:------------- | ----
+| "dropdown" | Dropdown select box | ![](files/dropdown.png) 
+| "select" | Vertical list select | ![](files/select.png)
+| "multiselect" | Vertical list multiselect | ![](files/multiselect.png)
+| "singleanswer" | Horizontal list select | ![](files/singleanswer.png)
+| "multianswer" | Horizontal list multiselect | ![](files/multianswer.png)
+| "rankorder" | Vertical list of draggable ranked options | ![](files/rankorder.png)
+| "singleline" | Single line text entry | ![](files/singleline.png)
+| "essay" | Multiline text entry | ![](files/essay.png)
 
 ## Non-Latin language support
 
