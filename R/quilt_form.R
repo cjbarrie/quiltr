@@ -52,15 +52,7 @@ quilt_form <- function(input_data,
 
   variable <- NULL
 
-  if(!(is.null(input_data$id))) {
-    input_data$id <- paste("[[ID:",
-                           input_data$id,
-                           "]]", sep = "")
-  } else {
-    input_data$id <- paste("[[ID:",
-                           gsub("\\s", "_", input_data$id), "]]",
-                           sep = "")
-  }
+  input_data <- addformIDs(input_data)
 
   if(page_break_every != 0) {
 
