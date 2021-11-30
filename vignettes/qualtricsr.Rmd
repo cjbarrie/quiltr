@@ -66,6 +66,23 @@ Qualtrics will then prompt us to select the relevant .txt file, which we previou
 ![](files/quiltr2.png){width=80%}
 </center>
 
+## Question types
+
+There are several options for question types for text labelling tasks. The first group allow the user to select from a set of options (e.g., "Yes/No/Maybe"), and allow respondents to select either one or multiple answers depending on whether we specify e.g., "select" or "multiselect" as our `question_type` argument. 
+
+The table below details the different question types:
+
+| `question_type` | Description |
+|----------|:-------------:|
+| "dropdown" | Dropdown select box
+| "select" | Vertical list select
+| "multiselect" | Vertical list multiselect
+| "singleanswer" | Horizontal list select
+| "multianswer" | Horizontal list multiselect
+| "rankorder" | Vertical list of draggable ranked options
+| "singleline" | Single line text entry
+| "essay" | Multiline text entry
+
 ## Non-Latin language support
 
 The package works equally well with Latin languages as it does with non-Latin languages, including languages written from right-left such as Arabic. We can see this below where we use a mixture of Arabic text and English prompts.

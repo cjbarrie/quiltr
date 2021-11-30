@@ -20,7 +20,7 @@ quilt_form_data(
 
 \item{text}{character vector: text inputs for labelling}
 
-\item{response_type}{character vector: one of c("yesno", "options", "scale")}
+\item{response_type}{character vector: one of c("yesno", "options", "scale", "text")}
 
 \item{options}{character vector of response options: e.g., c("big", "small", "biggie smalls")}
 

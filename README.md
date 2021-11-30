@@ -20,8 +20,6 @@ library(quiltr)
 
 ```
 
-The <tt>quiltr</tt> package has been adapted from the <tt>qualtricsR</tt> [here](https://github.com/saberry/qualtricsR). This package was designed for generating bespoke surveys in a format appropriate for importing into Qualtrics. 
-
 The <tt>quiltr</tt> package is designed for generating Qualtrics importable forms for data labelling, in particular text labelling. 
 
 There are two workhorse functions, which are `quilt_form_data()` and `quilt_form`. The first of these takes a dataset of text for labelling and structures it appropriately for writing the Qualtrics data labelling form. The second takes the `data.frame` produced by `quilt_form_data()` and generates a .txt file that is importable into Qualtrics.
@@ -29,7 +27,7 @@ There are two workhorse functions, which are `quilt_form_data()` and `quilt_form
 In the package are several bundled datasets, which are useful for testing and understanding how the package functions. These are named: `lipsum_text`, `arabiya_text`, and `qdat`.
 
 
-| Dataset   |     Description      |
+| Dataset | Description |
 |----------|:-------------:|
 |lipsum_text | Dataset of (pseudo) random lipsum text generated using the <tt>stringi</tt> package
 |arabiya_text | Dataset of Arabic text data sampled from [https://data.mendeley.com/datasets/57zpx667y9/2](https://data.mendeley.com/datasets/57zpx667y9/2)
@@ -69,7 +67,6 @@ quilt_form(input_data = qdat,
 
 After we've generated the file in the appropriate format, we can import to Qualtrics. First we go to the survey in question, here named "import_test." We then click on tools and select the "Import/Export" > "Import survey." 
 
-
 ![](man/figures/quiltr1.gif)
 
 Qualtrics will then prompt us to select the relevant .txt file, which we previously generated with `quilt_form`. We select here "quilted_survey.txt" and press "Import." We have now successfully imported our survey into Qualtrics!
@@ -95,6 +92,27 @@ quilt_form(input_data = qdat,
 
 After importing into Qualtrics, we see that the prompt and Arabic text is correctly displayed:
 
-
-
 ![](man/figures/quiltr3.png)
+
+## Question types
+
+There are several options for question types for text labelling tasks. The first group allow the user to select from a set of options (e.g., "Yes/No/Maybe"), and allow respondents to select either one or multiple answers depending on whether we specify e.g., "select" or "multiselect" as our `question_type` argument. 
+
+The table and gif below detail the different question types, and how they are rendered in Qualtrics.
+
+| `question_type` | Description |
+|----------|:-------------:|
+| "dropdown" | Dropdown select box
+| "select" | Vertical list select
+| "multiselect" | Vertical list multiselect
+| "singleanswer" | Horizontal list select
+| "multianswer" | Horizontal list multiselect
+| "rankorder" | Vertical list of draggable ranked options
+| "singleline" | Single line text entry
+| "essay" | Multiline text entry
+
+![](man/figures/quiltr2.gif)
+
+## Acknowledgments
+
+The <tt>quiltr</tt> package has been adapted from the <tt>qualtricsR</tt> [here](https://github.com/saberry/qualtricsR). This package was designed for generating bespoke surveys in a format appropriate for importing into Qualtrics but lacked support for many of the requirements of large text labelling inputs.

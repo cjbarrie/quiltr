@@ -11,7 +11,7 @@ quilt_form(input_data, page_break_every = 0, question_type, filename)
 
 \item{page_break_every}{integer: number of text examples before page break; default is 0}
 
-\item{question_type}{character vector: one of c("dropdown", "select", "multiselect", "singleanswer", "multianswer", "rankorder" )}
+\item{question_type}{character vector: one of c("dropdown", "select", "multiselect", "singleanswer", "multianswer", "rankorder", "singleline", "essay" )}
 
 \item{filename}{name of survey .txt form generated, e.g. "quilted_form.txt."}
 }
