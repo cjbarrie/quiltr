@@ -2,7 +2,7 @@
 #'
 #' @param input_data data.frame: input data generated with `quilt_form_data()`
 #' @param page_break_every integer: number of text examples before page break; default is 0
-#' @param question_type character vector: one of c("dropdown", "select", "multiselect", "singleanswer", "multianswer", "rankorder" )
+#' @param question_type character vector: one of c("dropdown", "select", "multiselect", "singleanswer", "multianswer", "rankorder", "singleline", "essay" )
 #' @param filename name of survey .txt form generated, e.g. "quilted_form.txt."
 #'
 #' @return a .txt survey file
@@ -46,6 +46,14 @@ quilt_form <- function(input_data,
 
   if(question_type=="rankorder"){
     question_type = "[[Question:RankOrder]]"
+  }
+
+  if(question_type=="singleline"){
+    question_type = "[[Question:TextEntry:SingleLine]]"
+  }
+
+  if(question_type=="essay"){
+    question_type = "[[Question:TextEntry:Essay]]"
   }
 
   rowID <- NULL

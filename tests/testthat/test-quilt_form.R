@@ -35,6 +35,24 @@ test_that("defensive programming", {
       question_type = "rankorder"
     )
   ))
+  expect_error(capture_warnings(
+    quilt_form(
+      input_data = qdat,
+      question_type = "singleline"
+    )
+  ))
+  expect_error(capture_warnings(
+    quilt_form(
+      input_data = qdat,
+      question_type = "form"
+    )
+  ))
+  expect_error(capture_warnings(
+    quilt_form(
+      input_data = qdat,
+      question_type = "essay"
+    )
+  ))
 })
 
 test_that("defensive programming", {

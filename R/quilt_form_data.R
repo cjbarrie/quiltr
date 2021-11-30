@@ -2,7 +2,7 @@
 #'
 #' @param prompt character string: prompt of text for labelling, e.g.: "Label this text: "; defaults to `NULL`
 #' @param text character vector: text inputs for labelling
-#' @param response_type character vector: one of c("yesno", "options", "scale")
+#' @param response_type character vector: one of c("yesno", "options", "scale", "text")
 #' @param options character vector of response options: e.g., c("big", "small", "biggie smalls")
 #' @param addID add an ID variable to the text data
 #' @param nlow integer: low end of numeric scale
@@ -55,6 +55,10 @@ quilt_form_data <- function(prompt = NULL, text, response_type, options, addID =
       stop("Scale response requires upper and lower bound to be specified")
     }
     df$response_type = paste(rep(nlow:nhigh), collapse = ";")
+  }
+
+  if(response_type=="text"){
+    df$response_type = paste(rep("", length(text)))
   }
 
   if(isTRUE(addID)){
