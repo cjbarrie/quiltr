@@ -37,12 +37,7 @@ quilt_form_data <- function(prompt = NULL, text, response_type, options, addID =
     text <- text[!is.na(text)]
   }
 
-  if(is.null(prompt)){
-    prompt = ""
-    df = data.frame(prompt = paste(rep(prompt, length(text)), text))
-  } else {
-    df = data.frame(prompt = paste(rep(prompt, "\n", length(text)), text))
-  }
+  df <- addprompt(prompt, text)
 
   if(response_type=="yesno"){
     df$response_type = paste(rep("Yes;No", length(text)))
