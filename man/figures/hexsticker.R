@@ -1,10 +1,22 @@
 library(hexSticker)
+library(ggplot2)
+library(ggimage)
 
-s <- sticker("man/figures/quilt.jpg",
-             package="quiltr",
-             p_size=50,p_color="black",
-             s_x=1.05, s_y=.75,
-             s_width=.5, s_height=.6,
-             h_fill="white", h_color="black",
+p <- ggplot(data.frame(x=1,y=1,image="man/figures/hexgoogledraw1.png"), aes(x,y)) +
+  geom_image(aes(image=image), size=1.06) + theme_void()
+
+s <- sticker(p,
+             package = "quiltr",
+             s_x = 1,
+             s_y = 1,
+             s_width = 2.163,
+             s_heigh = 2.5,
+             p_x = 1,
+             p_y = 1.4,
+             h_color = "white",
+             h_fill = "transparent",
+             h_size = 1,
+             p_color = "black",
+             p_size = 72,
              dpi = 800,
         filename="man/figures/quiltrhex.png")
