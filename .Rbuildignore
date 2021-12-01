@@ -1,6 +1,9 @@
 ^quiltr\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^cran-comments.md$
 ^test$
 ^data-raw$
+^test$
 ^codecov\.yml$
+

@@ -9,6 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-9156-990X"))
 Description: Functions to convert text data for labelling into format appropriate for importing into Qualtrics. Supports multiple language, including right-to-left scripts as well as different response types. Outputs an Advance Format .txt file that read into Qualtrics.
 License: MIT + file LICENSE
+Language: en-US
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
