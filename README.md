@@ -1,5 +1,7 @@
 # quiltr <img src="man/figures/quiltrhex.png" width="160px" align="right" />
 
+[![Codecov test coverage](https://codecov.io/gh/cjbarrie/quiltr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/cjbarrie/academictwitteR?branch=master)
+
 Qualtrics imports for labelling text using R
 
 ## Installation
@@ -7,7 +9,12 @@ Qualtrics imports for labelling text using R
 You can install the package with:
 
 ``` r
-devtools::install_github("cjbarrie/quiltr")
+install.packages("quiltr")
+```
+Or the development version with:
+
+``` r
+devtools::install_github("cjbarrie/quiltr", build_vignettes = TRUE)
 ```
 
 To use the package, it first needs to be loaded with:
