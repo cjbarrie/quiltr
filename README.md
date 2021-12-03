@@ -1,6 +1,8 @@
 # quiltr <img src="man/figures/quiltrhex.png" width="160px" align="right" />
 
 [![Codecov test coverage](https://codecov.io/gh/cjbarrie/quiltr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/cjbarrie/academictwitteR?branch=master)
+![Downloads](https://cranlogs.r-pkg.org/badges/quiltr)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/quiltr)](https://cran.r-project.org/package=quiltr)
 
 Qualtrics imports for labelling text using R
 
